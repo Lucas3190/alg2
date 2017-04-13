@@ -49,24 +49,24 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 			escolha=escolhePoligono();
 			opcao2=opcao2+escolha;
 				switch (opcao2){
-					case 2:
+					case 2:{
 						A=criaPoligono(A,B,temp);
-						mainMenu(A,B);
-					break;
-					case 3:
+						break;
+						}	
+					case 3:{
 						if (escolha == 1){
 							A=criaPoligono(A,B,temp);
-							mainMenu(A,B);
 						}	
 						else
 							if (escolha == 2){
 								B=criaPoligono(A,B,temp);
-								mainMenu(A,B);
 							}
 						break;	
-					case 4: 
+						}	
+					case 4:{
 						B=criaPoligono(A,B,temp);
-						mainMenu(A,B);					
+						break;
+					}
 				}
 			}
 		case 2:{
@@ -77,20 +77,16 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 				switch (opcao2){
 					case 2:
 						A=inserePontoPoligono(A,temp);
-						mainMenu(A,B);
 					case 3:
 						if (escolha == 1){
 							A=inserePontoPoligono(A,temp);
-							mainMenu(A,B);
 						}	
 						else
 							if (escolha == 2){
-								B=inserePontoPoligono(B,temp);
-								mainMenu(A,B);						
+								B=inserePontoPoligono(B,temp);			
 							}	
 					case 4: 
 						B=inserePontoPoligono(B,temp);
-						mainMenu(A,B);
 				}
 		break;
 		}	
@@ -111,12 +107,10 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 					case 1:
 						A=imprimePoligono(A);
 						sleep(4);
-						mainMenu(A,B);
 					break;
 					case 2:
 						B=imprimePoligono(B);
 						sleep(4);
-						mainMenu(A,B);
 					break;
 				}
 			break;
@@ -124,6 +118,7 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 		default:
 			printf("ERRO: -----------------------");	
 			break;
+	break;
 	}
 }
 
