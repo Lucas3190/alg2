@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 
+
 int escolhePoligono(){
 	int opcao2;
 	system("clear");
@@ -30,7 +31,7 @@ int menu2(){
 }
 
 
-void mainMenu(struct TPoligono A, struct TPoligono B){
+void mainMenu(struct TPoligono A, struct TPoligono B,struct TPoligono C){
 	int opcao,escolha,opcao2=0,temp; 
 	system("clear");
 	printf("----------------------------------------\n");
@@ -39,7 +40,9 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 	printf("3 - Remove ponto do poligono desejado.\n");
 	printf("4 - Calcula o perimetro do poligono desejado.\n");
 	printf("5 - Calcula a àrea do poligono desejado.\n");
-	printf("6 - Imprime o poligono desejado.\n");
+	printf("6 - Calcula a intersecao entre A e B.\n");
+	printf("7 - Calcula a uniao entre A e B.\n");
+	printf("8 - Imprime o poligono desejado.\n");
 	printf("----------------------------------------\n");
 	printf("Entre com a opção desejada: "); scanf("%d",&opcao);
 	switch (opcao){
@@ -59,15 +62,16 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 						}	
 						else
 							if (escolha == 2){
-								B=criaPoligono(A,B,temp);
+								B=criaPoligono(B,A,temp);
 							}
 						break;	
 						}	
 					case 4:{
-						B=criaPoligono(A,B,temp);
+						B=criaPoligono(B,A,temp);
 						break;
 					}
 				}
+			mainMenu(A,B,C);
 			}
 		case 2:{
 			opcao2=menu2(); 
@@ -77,18 +81,22 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 				switch (opcao2){
 					case 2:
 						A=inserePontoPoligono(A,temp);
+						break;
 					case 3:
 						if (escolha == 1){
 							A=inserePontoPoligono(A,temp);
+							break;
 						}	
 						else
 							if (escolha == 2){
 								B=inserePontoPoligono(B,temp);			
+								break;
 							}	
 					case 4: 
 						B=inserePontoPoligono(B,temp);
+						break;
 				}
-		break;
+		mainMenu(A,B,C);
 		}	
 		case 3:{
 			escolha=escolhePoligono();
@@ -100,8 +108,49 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 					 	B=removePontoPoligono(B);
 					break;
 				}	
+			mainMenu(A,B,C);
 			}
+		case 4:{
+			escolha=escolhePoligono();
+			switch (escolha){
+				case 1: 
+					A=calcularPerimetro(A);
+				break;
+				case 2:
+					B=calcularPerimetro(B);
+				break;
+				default:
+						printf("OPCAO INEXISTE -- \n");
+				break;
+			}
+			mainMenu(A,B,C);
+		}
+		case 5:{
+			escolha=escolhePoligono();
+			switch (escolha){
+				case 1:
+					A=calcularArea(A);
+				break;
+				case 2:
+					B=calcularArea(B);
+				break;
+				default:
+						printf("OPCAO INEXISTE -- \n");
+				break;
+			}
+		mainMenu(A,B,C);
+		}
 		case 6:{
+			C=intersecaoPoligonoAeB(A,B,C);
+			C=imprimePoligono(C);
+			mainMenu(A,B,C);
+		}
+		case 7:{
+			C=uniaoPoligonoAeB(A,B,C);
+			C=imprimePoligono(C);
+			mainMenu(A,B,C);
+		}
+		case 8:{
 			escolha=escolhePoligono();
 				switch (escolha){
 					case 1:
@@ -113,7 +162,7 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 						sleep(4);
 					break;
 				}
-			break;
+			mainMenu(A,B,C);
 			}
 		default:
 			printf("ERRO: -----------------------");	
@@ -123,12 +172,14 @@ void mainMenu(struct TPoligono A, struct TPoligono B){
 }
 
 int main(){
-	struct TPoligono A,B;
-	A.total_pontos=0,B.total_pontos=0;
+	struct TPoligono A,B,C;
+	A.total_pontos=0,B.total_pontos=0; C.total_pontos=0;
 	A.pontos =(struct TPonto * )malloc(sizeof(float));
-	B.pontos =(struct TPonto * )malloc(sizeof(float)); 
-	mainMenu(A,B);
+	B.pontos =(struct TPonto * )malloc(sizeof(float));
+	C.pontos=(struct TPonto *)malloc(sizeof(float)); 
+	mainMenu(A,B,C);
 	free(A.pontos);
 	free(B.pontos);
+	free(C.pontos);
 	return 0;
 }

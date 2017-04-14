@@ -4,11 +4,14 @@
 #include "TPonto.h"
 
 struct TPonto criaPonto(){
+	int a;
 	struct TPonto ponto;
-	srand(time(NULL));	// Não repete o número ja gerado.
-	ponto.x = (float)(rand())/(float)(RAND_MAX)*100.0; // Gera o numero aleatorio entre 0..100.
 	srand(time(NULL));
-	ponto.y = (float)(rand())/(float)(RAND_MAX)*100.0;
+	a=rand();	// Não repete o número ja gerado.
+	ponto.x = (float)a/(float)(RAND_MAX)*100.0; // Gera o numero aleatorio entre 0..100.
+	srand(time(NULL));
+	a=rand();
+	ponto.y = (float)a/(float)(RAND_MAX)*100.0;
 	return ponto;
 }
 

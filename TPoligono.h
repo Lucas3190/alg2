@@ -16,13 +16,13 @@ struct TPoligono inserePontoPoligono(struct TPoligono A,int opcao);
 
 struct TPoligono removePontoPoligono(struct TPoligono A);
 
-void calcularPerimetro(struct TPoligono A,struct TPoligono B);
+struct TPoligono calcularPerimetro(struct TPoligono A);
 
-void calcularArea(struct TPoligono A,struct TPoligono B);
+struct TPoligono calcularArea(struct TPoligono A);
 
-struct TPoligono intersecaoPoligonoAeB(struct TPoligono A, struct TPoligono B);
+struct TPoligono intersecaoPoligonoAeB(struct TPoligono A, struct TPoligono B,struct TPoligono C);
 
-struct TPoligono uniaoPoligonoAeB(struct TPoligono A, struct TPoligono B);
+struct TPoligono uniaoPoligonoAeB(struct TPoligono A, struct TPoligono B,struct TPoligono C);
 
 struct TPoligono imprimePoligono(struct TPoligono A);
 
